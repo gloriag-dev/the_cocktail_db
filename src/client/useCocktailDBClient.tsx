@@ -7,14 +7,38 @@ export interface ICocktail {
 
 export default function useCocktailDBClient() {
 
-
-    const searchCocktails = async (search: string): Promise<ICocktail[]> => {
+    const getAll = async () => {
+        const res = await axios({
+            url: "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=",
+            method: "GET",
+        });
+        console.log(res)
+    }
+    const searchByName = async (search: string): Promise<ICocktail[]> => {
         try {
             const res = await axios({
                 url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
                 method: "GET",
                 params: {
-                    search
+                    s: search
+                }
+            });
+            console.log(res.data);
+            return res.data as ICocktail[]
+
+        } catch (err) {
+            console.error(err);
+            throw err
+        }
+    }
+
+    const searchByFirstLetter = async (firstLetter: string): Promise<ICocktail[]> => {
+        try {
+            const res = await axios({
+                url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
+                method: "GET",
+                params: {
+                    s: firstLetter
                 }
             });
             console.log(res.data);
@@ -27,7 +51,9 @@ export default function useCocktailDBClient() {
     }
 
     return {
-        searchCocktails
+        searchCocktails: searchByName,
+        searchByFirstLetter,
+        getAll
     }
 
 }

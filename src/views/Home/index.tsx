@@ -5,6 +5,7 @@ import Navbar from "../../theme/Navbar"
 import axios from "axios"
 import searchCocktails, { ICocktail } from "../../client/useCocktailDBClient"
 import useCocktailDBClient from "../../client/useCocktailDBClient"
+import SearchBar from "../../components/SearchBar"
 
 
 export default function Home() {
@@ -13,25 +14,29 @@ export default function Home() {
 
     const [cocktailList, setCocktailList] = useState<ICocktail[]>()
 
-    const onChoseLetter = (letter: string) => {
-        fetchByLetter(letter)
+    const onChoseLetter = (firstLetter: string) => {
+        fetchByFirstLetter(firstLetter)
     }
     const handleSearch = (search: string) => {
         fetchBySearch(search)
     }
 
-    // useEffect(() => {
-    //     fetchListData();
-    // }, []);
-    // const fetchListData = async () => {
-    //     try {
-    //         const data = await cocktailClient.searchCocktails()
-    //         setCocktailList(data)
-    //         //console.log(res);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
+    useEffect(() => {
+        fetchListData();
+    }, []);
+
+
+
+    const fetchListData = async () => {
+        try {
+            const res = await cocktailClient.getAll()
+            // setCocktailList(res.data)
+            //console.log(res);
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     const fetchBySearch = async (search: string) => {
         try {
@@ -43,7 +48,7 @@ export default function Home() {
         }
     };
 
-    const fetchByLetter = async (letter: string) => {
+    const fetchByFirstLetter = async (firstLetter: string) => {
         try {
             const res = await axios({
                 url: "https://www.thecocktaildb.com/api/json/v1/1/search.php?",
@@ -62,5 +67,6 @@ export default function Home() {
 
         <Navbar></Navbar>
         <CocktailCard></CocktailCard>
+        <SearchBar e={undefined} onChange={handleSearch}></SearchBar>
     </div>)
 }
