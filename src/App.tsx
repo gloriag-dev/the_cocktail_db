@@ -1,9 +1,12 @@
-import "./App.css";
+import "./App.scss";
+
+import Home from "./views/Home";
+
 
 function App() {
   return (
     <div className="App">
-      <h1> The Cocktail DB!</h1>
+      <Home />
     </div>
   );
 }

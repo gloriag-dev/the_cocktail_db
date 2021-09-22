@@ -1,0 +1,12 @@
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    .logo-img{
+        width: 7em;
+    }
+    .title{
+        font-size: 22px;
+        font-weight: bold;
+        color: #0089E8
+    }
+}
