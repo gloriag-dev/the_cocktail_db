@@ -1,10 +1,32 @@
-.searchMe{
-    color: black;
-    background-color: antiquewhite;
-        .MuiFormLabel-root.Mui-focused{
-            color:black !important
+
+.searchBar{
+align-items:center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  text-align: center;
+  flex-direction: column;
+  h2{
+    background: -webkit-linear-gradient(orange, orangered);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+    .searchMe ,.MuiInputBase-root{
+        color: darkorange;
+        background-color: black;
+        border:1.5px orangered dotted;
+        
+        .MuiFormLabel-root{
+            color:darkorange;
         }
-        .MuiFilledInput-underline:after{
-            border-bottom-color: black ;
+        .MuiInputBase-root{
+            color: darkorange
         }
+            .MuiFormLabel-root.Mui-focused{
+                color:darkorange;
+            }
+            .MuiFilledInput-underline:after{
+                border-bottom-color: black ;
+            }
+    }
 }

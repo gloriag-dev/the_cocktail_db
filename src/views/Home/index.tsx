@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, ReactNode } from "react"
+import React, { useState, useEffect } from "react"
 import CocktailCard from "../../components/CocktailCard"
 import Navbar from "../../theme/Navbar"
 import axios from "axios"
 import searchCocktails, { ICocktail } from "../../client/useCocktailDBClient"
 import useCocktailDBClient from "../../client/useCocktailDBClient"
 import SearchBar from "../../components/SearchBar"
-
+import CocktailsList from "../../components/CocktailsList"
+import LetterWidget from "../../components/LetterWidget"
 
 export default function Home() {
 
@@ -30,8 +31,8 @@ export default function Home() {
     const fetchListData = async () => {
         try {
             const res = await cocktailClient.getAll()
-            // setCocktailList(res.data)
-            //console.log(res);
+            setCocktailList(res)
+            console.log(res, "GET all");
 
         } catch (err) {
             console.error(err);
@@ -50,23 +51,20 @@ export default function Home() {
 
     const fetchByFirstLetter = async (firstLetter: string) => {
         try {
-            const res = await axios({
-                url: "https://www.thecocktaildb.com/api/json/v1/1/search.php?",
-                method: "GET",
-                params: {
-                    letter: "p"
-                }
-            });
-            setCocktailList(res.data)
-            //console.log(res);
+            const res = await cocktailClient.searchByFirstLetter(firstLetter)
+            setCocktailList(res)
+            console.log(res, "fetch by letter");
         } catch (e) {
             console.error(e);
         }
     };
-    return (<div>
 
+    return (<div className="home">
         <Navbar></Navbar>
         <CocktailCard></CocktailCard>
         <SearchBar e={undefined} onChange={handleSearch}></SearchBar>
+        {cocktailList && <CocktailsList list={cocktailList}></CocktailsList>}
+        {!cocktailList && <h3 className="no-list-placeholder">Sorry, there are no matching cocktails, try again!</h3>}
+        <LetterWidget onChange={onChoseLetter} letter={""}></LetterWidget>
     </div>)
 }

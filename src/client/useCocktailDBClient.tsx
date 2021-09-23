@@ -2,7 +2,7 @@ import React from "react"
 import axios from "axios"
 
 export interface ICocktail {
-
+    strDrink: string
 }
 
 export default function useCocktailDBClient() {
@@ -13,6 +13,7 @@ export default function useCocktailDBClient() {
             method: "GET",
         });
         console.log(res)
+        return res.data.drinks as ICocktail[]
     }
     const searchByName = async (search: string): Promise<ICocktail[]> => {
         try {
@@ -23,8 +24,8 @@ export default function useCocktailDBClient() {
                     s: search
                 }
             });
-            console.log(res.data);
-            return res.data as ICocktail[]
+            console.log(res.data.drinks);
+            return res.data.drinks as ICocktail[]
 
         } catch (err) {
             console.error(err);
@@ -38,11 +39,11 @@ export default function useCocktailDBClient() {
                 url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
                 method: "GET",
                 params: {
-                    s: firstLetter
+                    f: firstLetter
                 }
             });
-            console.log(res.data);
-            return res.data as ICocktail[]
+
+            return res.data.drinks as ICocktail[]
 
         } catch (err) {
             console.error(err);

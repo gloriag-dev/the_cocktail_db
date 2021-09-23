@@ -1,0 +1,27 @@
+
+.cocktails-list{
+  margin-top: 8em;
+  align-items:center;
+  justify-content: center;
+  display: flex;
+  align-self: center;
+  text-align: center;
+  flex-direction: column;
+  h1{
+    background: -webkit-linear-gradient(orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  ul{
+    min-width: 696px;
+	  
+      
+      .single-cocktail{
+      color: orange;
+      list-style-type: none;
+      padding-top: 18px;
+      font-size: 18px;
+     }
+  }
+  
+}

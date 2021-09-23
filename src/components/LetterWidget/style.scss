@@ -1,0 +1,33 @@
+h3{
+    background: -webkit-linear-gradient(orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: center,
+}
+
+.letterWidget{
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    padding-bottom: 2em;
+    padding-top:5em;
+}
+
+.alphabet-btn{
+    background: -webkit-linear-gradient(orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 18px;
+    border-radius: 9999px;
+    border: 2px orange dotted;
+    margin-left: 1em;
+    margin-bottom: 0.5em
+}
+
+

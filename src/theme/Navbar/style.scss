@@ -1,12 +1,22 @@
 .logo-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    text-align: center;
+    align-content: center;
+   justify-content: center;
+    align-self: center;
     .logo-img{
         width: 7em;
     }
     .title{
-        font-size: 22px;
+        font-size: 40px;
         font-weight: bold;
-        color: #0089E8
+        background: -webkit-linear-gradient(orange, red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        align-content: center;
+        display: flex;
+        align-self: center
     }
 }
