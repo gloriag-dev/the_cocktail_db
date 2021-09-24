@@ -1,6 +1,6 @@
 import React from "react";
 import { ICocktail } from "../../client/useCocktailDBClient";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 import "./style.scss";
 

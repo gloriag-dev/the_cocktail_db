@@ -1,6 +1,14 @@
 import React from "react";
+import RandomCocktailCardModal from "../../theme/RandomCocktailCardModal";
 import "./style.scss";
 
+
 export default function CocktailCard() {
-  return <h2>Hello Card!</h2>;
+
+
+
+  return <div className="btn-container">
+
+    <RandomCocktailCardModal></RandomCocktailCardModal>
+  </div>;
 }
