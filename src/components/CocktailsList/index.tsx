@@ -1,5 +1,6 @@
 import React from "react";
 import { ICocktail } from "../../client/useCocktailDBClient";
+import { useParams, Link } from 'react-router-dom';
 
 
 import "./style.scss";
@@ -8,10 +9,9 @@ import "./style.scss";
 export interface ICocktailsListProps {
   list: ICocktail[]
 }
+
+
 export default function CocktailsList(props: ICocktailsListProps) {
-  const goToDetailsPage = () => {
-    console.log("DetailsPage")
-  }
 
   console.log("cocktailList", props)
   return (
@@ -22,7 +22,7 @@ export default function CocktailsList(props: ICocktailsListProps) {
       </div>
       <ul>
         {props.list && props.list.map((singleCocktail: ICocktail, index) => {
-          return <li className="single-cocktail" key={index} onClick={goToDetailsPage}>{singleCocktail.strDrink} </li>
+          return <Link to={`/${singleCocktail.idDrink}`}><li className="single-cocktail" key={index}> {singleCocktail.strDrink} </li></Link>
         })}
       </ul>
     </div>

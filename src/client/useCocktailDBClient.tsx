@@ -98,14 +98,31 @@ export default function useCocktailDBClient() {
             throw err
         }
     }
-    const getRandomCocktail = async () => {
+    const getRandomCocktail = async (): Promise<ICocktail> => {
         try {
             const res = await axios({
                 url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
                 method: "GET",
             })
             console.log(res, "random")
-            return res.data.drinks as ICocktail[]
+            return res.data.drinks[0] as ICocktail
+        } catch (err) {
+            console.error(err);
+            throw err
+        }
+    }
+
+    const getCocktailDetails = async (id: string): Promise<ICocktail> => {
+        try {
+            const res = await axios({
+                url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
+                method: "GET",
+                params: {
+                    i: id
+                }
+            })
+            console.log(res, "details")
+            return res.data.drinks[0] as ICocktail
         } catch (err) {
             console.error(err);
             throw err
@@ -115,7 +132,8 @@ export default function useCocktailDBClient() {
         searchCocktails: searchByName,
         searchByFirstLetter,
         getAll,
-        getRandomCocktail
+        getRandomCocktail,
+        getCocktailDetails
     }
 
 }

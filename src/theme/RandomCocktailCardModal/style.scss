@@ -1,0 +1,61 @@
+
+.MuiBox-root{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1px;
+    h2{
+        align-items:center;
+        justify-content: center;
+        display: flex;
+        align-self: center;
+        text-align: center;
+        background: -webkit-linear-gradient(orange, orangered);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .img-wrapper{
+        width: 10vw;
+        align-items:center;
+        justify-content: center;
+        align-self: center;
+        text-align: center;
+        
+        img{
+            width: 100%;
+            border-radius: 122px;
+            border:orange dotted 2px;
+        }
+    }
+    .question{
+        display: flex;
+        flex-direction: row;
+    }
+    span{
+        margin-top: 1em;
+        color:#ffd904;
+        font-family:Impact, 'Arial Narrow Bold', sans-serif;
+        align-items:center;
+        justify-content: center;
+        align-self: center;
+        text-align: center;
+    }
+    p, .recipe-text{
+        color:orangered;
+        
+    }
+    li{
+        color:orange;
+    }
+    .alphabet-btn{
+        background: -webkit-linear-gradient(orange, red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 18px;
+        border-radius: 9999px;
+        border: 2px orange dotted;
+        margin-right: 14px;
+        width: 26px;
+        height: 25px;
+        margin-top: 12px
+    }
+}
