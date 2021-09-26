@@ -8,6 +8,7 @@ import "./App.scss";
 import CocktailDetailsPage from "./views/CocktailDetailsPage";
 
 import Home from "./views/Home";
+import IngredientDetailPage from "./views/IngredientDetailPage";
 
 
 function App() {
@@ -18,9 +19,13 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route path="/ingredient/:name">
+            <IngredientDetailPage></IngredientDetailPage>
+          </Route>
           <Route path="/:id">
             <CocktailDetailsPage />
           </Route>
+
         </Switch>
       </Router>
 

@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import useCocktailDBClient, { ICocktail } from "../../client/useCocktailDBClient";
 import "./style.scss"
+import { Link } from "react-router-dom"
+
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -71,21 +73,21 @@ export default function RandomCocktailCardModal() {
                     </div>
                     <p>Ingredients:</p>
                     <ul>
-                        {cocktail?.strIngredient1 && <li className="ingredient">{cocktail.strIngredient1}</li>}
-                        {cocktail?.strIngredient2 && <li className="ingredient">{cocktail.strIngredient2}</li>}
-                        {cocktail?.strIngredient3 && <li className="ingredient">{cocktail.strIngredient3}</li>}
-                        {cocktail?.strIngredient4 && <li className="ingredient">{cocktail.strIngredient4}</li>}
-                        {cocktail?.strIngredient5 && <li className="ingredient">{cocktail.strIngredient5}</li>}
-                        {cocktail?.strIngredient6 && <li className="ingredient">{cocktail.strIngredient6}</li>}
-                        {cocktail?.strIngredient7 && <li className="ingredient">{cocktail.strIngredient7}</li>}
-                        {cocktail?.strIngredient8 && <li className="ingredient">{cocktail.strIngredient8}</li>}
-                        {cocktail?.strIngredient9 && <li className="ingredient">{cocktail.strIngredient9}</li>}
-                        {cocktail?.strIngredient10 && <li className="ingredient">{cocktail.strIngredient10}</li>}
-                        {cocktail?.strIngredient11 && <li className="ingredient">{cocktail.strIngredient11}</li>}
-                        {cocktail?.strIngredient12 && <li className="ingredient">{cocktail.strIngredient12}</li>}
-                        {cocktail?.strIngredient13 && <li className="ingredient">{cocktail.strIngredient13}</li>}
-                        {cocktail?.strIngredient14 && <li className="ingredient">{cocktail.strIngredient14}</li>}
-                        {cocktail?.strIngredient15 && <li className="ingredient">{cocktail.strIngredient15}</li>}
+                        {cocktail?.strIngredient1 && <Link to={`/ingredient/${cocktail.strIngredient1.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient1}</li></Link>}
+                        {cocktail?.strIngredient2 && <Link to={`/ingredient/${cocktail.strIngredient2.replace(" ", "_")}`}> <li className="ingredient">{cocktail.strIngredient2}</li></Link>}
+                        {cocktail?.strIngredient3 && <Link to={`/ingredient/${cocktail.strIngredient3.replace(" ", "_")}`}> <li className="ingredient">{cocktail.strIngredient3}</li></Link>}
+                        {cocktail?.strIngredient4 && <Link to={`/ingredient/${cocktail.strIngredient4.replace(" ", "_")}`}> <li className="ingredient">{cocktail.strIngredient4}</li></Link>}
+                        {cocktail?.strIngredient5 && <Link to={`/ingredient/${cocktail.strIngredient5.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient5}</li></Link>}
+                        {cocktail?.strIngredient6 && <Link to={`/ingredient/${cocktail.strIngredient6.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient6}</li></Link>}
+                        {cocktail?.strIngredient7 && <Link to={`/ingredient/${cocktail.strIngredient7.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient7}</li></Link>}
+                        {cocktail?.strIngredient8 && <Link to={`/ingredient/${cocktail.strIngredient8.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient8}</li></Link>}
+                        {cocktail?.strIngredient9 && <Link to={`/ingredient/${cocktail.strIngredient9.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient9}</li></Link>}
+                        {cocktail?.strIngredient10 && <Link to={`/ingredient/${cocktail.strIngredient10.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient10}</li></Link>}
+                        {cocktail?.strIngredient11 && <Link to={`/ingredient/${cocktail.strIngredient11.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient11}</li></Link>}
+                        {cocktail?.strIngredient12 && <Link to={`/ingredient/${cocktail.strIngredient12.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient12}</li></Link>}
+                        {cocktail?.strIngredient13 && <Link to={`/ingredient/${cocktail.strIngredient13.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient13}</li></Link>}
+                        {cocktail?.strIngredient14 && <Link to={`/ingredient/${cocktail.strIngredient14.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient14}</li></Link>}
+                        {cocktail?.strIngredient15 && <Link to={`/ingredient/${cocktail.strIngredient15.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient15}</li></Link>}
                     </ul>
                     <span>Recipe:</span>
                     <span className="recipe-text">{cocktail?.strInstructions}</span>

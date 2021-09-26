@@ -1,0 +1,31 @@
+.ingredient-page{
+    display: flex;
+    flex-direction: column;
+      .card{
+            display:flex;
+            margin-top: 5em;
+            flex-direction: column;
+            align-items:center;
+            justify-content:center;
+            align-self: center;
+            text-align:center;
+            width: 350px;
+            border: 2px dotted orange;
+            img{
+                height:200px;
+                width:auto;
+                padding-bottom: 2em;
+            }
+            h2{
+                background: -webkit-linear-gradient(orange, red);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            h3{
+                color:yellow
+            }
+            span{
+                padding-bottom: 2em;
+            }
+        }
+}

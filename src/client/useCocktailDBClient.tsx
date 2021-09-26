@@ -53,6 +53,14 @@ export interface ICocktail {
     strVideo: null;
 }
 
+export interface IIngredient {
+    idIngredient: string,
+    strIngredient: string,
+    strDescription: string,
+    strType: string,
+    strAlcohol: string,
+    strABV: string
+}
 export default function useCocktailDBClient() {
 
     const getAll = async () => {
@@ -112,7 +120,7 @@ export default function useCocktailDBClient() {
         }
     }
 
-    const getCocktailDetails = async (id: string): Promise<ICocktail> => {
+    const getCocktailDetails = async (id: string): Promise<ICocktail | undefined> => {
         try {
             const res = await axios({
                 url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
@@ -122,9 +130,28 @@ export default function useCocktailDBClient() {
                 }
             })
             console.log(res, "details")
-            return res.data.drinks[0] as ICocktail
+            return res.data?.drinks?.[0] as ICocktail
         } catch (err) {
-            console.error(err);
+            console.error(err, { id });
+            throw err
+        }
+    }
+
+    const searchIngredientByName = async (name: string): Promise<IIngredient | undefined> => {
+
+        try {
+            const res = await axios({
+                url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
+                method: "GET",
+                params: {
+                    i: name
+                }
+            })
+            console.log(res.data.ingredients, "ingredient details res")
+            return res.data?.ingredients?.[0] as IIngredient
+
+        } catch (err) {
+            console.error(err, { name });
             throw err
         }
     }
@@ -133,7 +160,8 @@ export default function useCocktailDBClient() {
         searchByFirstLetter,
         getAll,
         getRandomCocktail,
-        getCocktailDetails
+        getCocktailDetails,
+        searchIngredientByName
     }
 
 }

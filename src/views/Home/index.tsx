@@ -8,6 +8,7 @@ import useCocktailDBClient from "../../client/useCocktailDBClient"
 import SearchBar from "../../components/SearchBar"
 import CocktailsList from "../../components/CocktailsList"
 import LetterWidget from "../../components/LetterWidget"
+import { CollectionsOutlined } from "@mui/icons-material"
 
 export default function Home() {
 
@@ -24,6 +25,7 @@ export default function Home() {
 
     useEffect(() => {
         fetchListData();
+
     }, []);
 
 

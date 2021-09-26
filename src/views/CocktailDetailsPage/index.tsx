@@ -3,34 +3,9 @@ import Navbar from "../../theme/Navbar"
 import useCocktailDBClient, { ICocktail } from "../../client/useCocktailDBClient";
 import "./style.scss"
 import { useParams } from "react-router";
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Link } from "react-router-dom"
 
-interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
-}
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-}));
 
 export default function CocktailDetailsPage() {
 
@@ -45,16 +20,11 @@ export default function CocktailDetailsPage() {
     const [cocktail, setCocktail] = useState<ICocktail>();
     const cocktailClient = useCocktailDBClient()
 
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
 
     const fetchById = async (id: string) => {
         try {
-            const drinks = await cocktailClient.getCocktailDetails(id);
-            setCocktail(drinks)
+            const cocktail = await cocktailClient.getCocktailDetails(id);
+            setCocktail(cocktail)
 
         } catch (err) {
             console.error();
@@ -62,73 +32,57 @@ export default function CocktailDetailsPage() {
     };
     return <div className="details-page">
         <Navbar></Navbar>
-        <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        R
-                    </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
-            <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </ExpandMore>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                        aside for 10 minutes.
-                    </Typography>
-                    <Typography paragraph>
-                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-                        medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-                        occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-                        large plate and set aside, leaving chicken and chorizo in the pan. Add
-                        pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-                        stirring often until thickened and fragrant, about 10 minutes. Add
-                        saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-                    </Typography>
-                    <Typography paragraph>
-                        Add rice and stir very gently to distribute. Top with artichokes and
-                        peppers, and cook without stirring, until most of the liquid is absorbed,
-                        15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-                        mussels, tucking them down into the rice, and cook again without
-                        stirring, until mussels have opened and rice is just tender, 5 to 7
-                        minutes more. (Discard any mussels that don’t open.)
-                    </Typography>
-                    <Typography>
-                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-                    </Typography>
-                </CardContent>
-            </Collapse>
-        </Card>
+
+        {!cocktail && <p>Sorry, there are no details</p>}
+        <div className='card-container'>
+
+            <h2>{cocktail?.strDrink}</h2>
+
+
+            <h4>{cocktail?.strAlcoholic}</h4>
+            <div className="img-wrapper">
+                <img
+
+                    src={cocktail?.strDrinkThumb}
+                    alt="Cocktail"
+                />
+            </div>
+
+            <div className="question">
+                <button className="alphabet-btn">?</button><span>Which glass should I use to serve it in? {cocktail?.strGlass}</span>
+
+            </div>
+
+
+
+            <p>Ingredients:</p>
+
+            <ul>
+                {cocktail?.strIngredient1 && <Link to={`/ingredient/${cocktail.strIngredient1.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient1}</li></Link>}
+                {cocktail?.strIngredient2 && <Link to={`/ingredient/${cocktail.strIngredient2.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient2}</li></Link>}
+                {cocktail?.strIngredient3 && <Link to={`/ingredient/${cocktail.strIngredient3.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient3}</li></Link>}
+                {cocktail?.strIngredient4 && <Link to={`/ingredient/${cocktail.strIngredient4.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient4}</li></Link>}
+                {cocktail?.strIngredient5 && <Link to={`/ingredient/${cocktail.strIngredient5.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient5}</li></Link>}
+                {cocktail?.strIngredient6 && <Link to={`/ingredient/${cocktail.strIngredient6.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient6}</li></Link>}
+                {cocktail?.strIngredient7 && <Link to={`/ingredient/${cocktail.strIngredient7.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient7}</li></Link>}
+                {cocktail?.strIngredient8 && <Link to={`/ingredient/${cocktail.strIngredient8.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient8}</li></Link>}
+                {cocktail?.strIngredient9 && <Link to={`/ingredient/${cocktail.strIngredient9.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient9}</li></Link>}
+                {cocktail?.strIngredient10 && <Link to={`/ingredient/${cocktail.strIngredient10.replace(" ", "_")}`}> <li className="ingredient">{cocktail.strIngredient10}</li></Link>}
+                {cocktail?.strIngredient11 && <Link to={`/ingredient/${cocktail.strIngredient11.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient11}</li></Link>}
+                {cocktail?.strIngredient12 && <Link to={`/ingredient/${cocktail.strIngredient12.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient12}</li></Link>}
+                {cocktail?.strIngredient13 && <Link to={`/ingredient/${cocktail.strIngredient13.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient13}</li></Link>}
+                {cocktail?.strIngredient14 && <Link to={`/ingredient/${cocktail.strIngredient14.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient14}</li></Link>}
+                {cocktail?.strIngredient15 && <Link to={`/ingredient/${cocktail.strIngredient15.replace(" ", "_")}`}><li className="ingredient">{cocktail.strIngredient15}</li></Link>}
+            </ul>
+
+            <span>Recipe:</span>
+            <span className="recipe-text">{cocktail?.strInstructions}</span>
+
+
+
+        </div>
+        <div className="btn-wrapper">
+            <Link to="/"> <button>Go Home, you're drunk!</button></Link>
+        </div>
     </div>
 }

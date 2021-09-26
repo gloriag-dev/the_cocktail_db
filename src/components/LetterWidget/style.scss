@@ -10,7 +10,13 @@
         text-align: center;
         align-self: center,
     }
-    
+    .letters-container{
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        align-self: center;
+        display:flex;
+    }
     .letterWidget{
         font-size: 20px;
         align-items: center;
@@ -33,7 +39,7 @@
     }
     
     .alphabet-btn:hover{
-        transform: rotateY(60deg);
+        transform: rotateY(280deg);
         
     }
     

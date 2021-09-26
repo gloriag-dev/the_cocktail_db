@@ -18,8 +18,10 @@ export default function LetterWidget(props: ILetterWidgetProps) {
 
     return <div className="letterWidget">
         <h3>Browse by letter</h3>
-        {letters && letters.map((letter, index) => {
-            return <button className="alphabet-btn" key={index} onClick={(event) => handleClick(letter)}>{letter}</button>
-        })}
+        <div className="letters-container">
+            {letters && letters.map((letter, index) => {
+                return <button className="alphabet-btn" key={index} onClick={(event) => handleClick(letter)}>{letter}</button>
+            })}
+        </div>
     </div>
 }
