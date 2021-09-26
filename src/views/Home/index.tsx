@@ -9,6 +9,7 @@ import SearchBar from "../../components/SearchBar"
 import CocktailsList from "../../components/CocktailsList"
 import LetterWidget from "../../components/LetterWidget"
 import { CollectionsOutlined } from "@mui/icons-material"
+import Footer from "../../theme/Footer"
 
 export default function Home() {
 
@@ -68,5 +69,6 @@ export default function Home() {
         {cocktailList && <CocktailsList list={cocktailList}></CocktailsList>}
         {!cocktailList && <h3 className="no-list-placeholder">Sorry, there are no matching cocktails, try again!</h3>}
         <LetterWidget onChange={onChoseLetter} letter={""}></LetterWidget>
+        <Footer></Footer>
     </div>)
 }

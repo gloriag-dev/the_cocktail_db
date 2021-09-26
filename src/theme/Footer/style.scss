@@ -1,0 +1,11 @@
+.footer{
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-top: 2em;
+    p{
+        background: -webkit-linear-gradient(orange, red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
