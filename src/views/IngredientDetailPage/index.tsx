@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import useCocktailDBClient, { IIngredient } from "../../client/useCocktailDBClient";
 import { useParams } from "react-router";
 import Navbar from "../../theme/Navbar";
+import { Link } from "react-router-dom";
 import "./style.scss"
 
 
@@ -38,7 +39,9 @@ export default function IngredientDetailPage() {
             {!ingredient?.strDescription && <span>Sorry, no description available for this item</span>}
             <span>{ingredient?.strDescription}</span>
         </div>
-
+        <div className="btn-wrapper">
+            <Link to="/"> <button>Go Home, you're drunk!</button></Link>
+        </div>
 
     </div>
 }

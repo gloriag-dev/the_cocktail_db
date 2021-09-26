@@ -20,3 +20,23 @@
         align-self: center
     }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 575px) {
+    .logo-container{
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-content: center;
+       justify-content: center;
+        align-self: center;
+        .logo-img{
+            width: 4em;
+        }
+        .title{
+            font-size: 20px;
+        
+        }
+    }
+   
+}

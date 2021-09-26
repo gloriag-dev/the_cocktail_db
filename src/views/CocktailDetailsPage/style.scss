@@ -124,5 +124,16 @@
            
     }
 }
-
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 575px) {
+    .details-page{
+    .card-container{
+        display: flex;
+        flex-direction: column;
+        padding-top: 1px;
+        width:300px;
+    }
+       
+    }
+}
    

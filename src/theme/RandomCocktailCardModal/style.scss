@@ -64,3 +64,15 @@
         margin-top: 12px
     }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 575px) {
+   
+.MuiBox-root{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1px;
+    max-width:250px;
+}
+   
+}
