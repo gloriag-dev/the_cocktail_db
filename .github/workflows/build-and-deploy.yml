@@ -31,7 +31,7 @@ jobs:
                 
             - run: yarn build
               env:
-                  CI: true
+                  CI: false
 
             - name: Deploy 🚀
               uses: peaceiris/actions-gh-pages@v3
