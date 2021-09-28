@@ -1,35 +1,27 @@
+import { lazy, Suspense } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  BrowserRouter as Router, Route, Switch
 } from "react-router-dom";
 import "./App.scss";
-import CocktailDetailsPage from "./views/CocktailDetailsPage";
-
-import Home from "./views/Home";
-import IngredientDetailPage from "./views/IngredientDetailPage";
+import Footer from "./theme/Footer";
+import Navbar from "./theme/Navbar";
 
 
 function App() {
   return (
-    <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/ingredient/:name">
-            <IngredientDetailPage></IngredientDetailPage>
-          </Route>
-          <Route path="/:id">
-            <CocktailDetailsPage />
-          </Route>
-
-        </Switch>
-      </Router>
-
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div className="App">
+        <Navbar></Navbar>
+        <Suspense fallback={<div>Loading</div>}>
+          <Switch>
+            <Route exact path="/" component={lazy(() => import("./views/Home"))} />
+            <Route path="/ingredient/:name" component={lazy(() => import("./views/IngredientDetailPage"))} />
+            <Route path="/:id" component={lazy(() => import("./views/CocktailDetailsPage"))} />
+          </Switch>
+        </Suspense>
+        <Footer></Footer>
+      </div>
+    </Router>
   );
 }
 

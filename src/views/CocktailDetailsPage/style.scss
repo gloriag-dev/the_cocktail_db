@@ -3,7 +3,6 @@
     justify-content: center;
     display: flex;
     align-self: center;
-    text-align: center;
     display: flex;
     flex-direction: column;
     .btn-wrapper{
@@ -32,96 +31,6 @@
             transition: 0.5s ease;
         }
         
-    }
-    .card-container{
-        margin-top: 2em;
-        width: 550px;
-        border: orangered 3px solid;
-        align-items:center;
-        justify-content: center;
-        display: flex;
-        align-self: center;
-        text-align: center;
-        flex-direction: column;
-        .question{
-            display: flex;
-            flex-direction: row;
-            align-items:center;
-            justify-content: center;
-            display: flex;
-            align-self: center;
-            text-align: center;
-        }
-        h2{
-            align-items:center;
-            justify-content: center;
-            display: flex;
-            align-self: center;
-            text-align: center;
-            background: -webkit-linear-gradient(orange, orangered);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .img-wrapper{
-            width: 12vw;
-            align-items:center;
-            justify-content: center;
-            align-self: center;
-            text-align: center;
-            
-            img{
-                width: 100%;
-                border-radius: 122px;
-                border:orange dotted 2px;
-            }
-        }
-        h4{
-            margin-top: 2em;
-            color:#ffd904;
-            font-family:Impact, 'Arial Narrow Bold', sans-serif;
-            align-items:center;
-            justify-content: center;
-            align-self: center;
-            text-align: center;
-        }
-        span{
-            margin-top: 1em;
-            color:#ffd904;
-            font-family:Impact, 'Arial Narrow Bold', sans-serif;
-            align-items:center;
-            justify-content: center;
-            align-self: center;
-            text-align: center;
-        }
-        p{
-            color:orangered;
-            
-        }
-        .recipe-text{
-            color:orangered; 
-            align-items:center;
-            justify-content: center;
-            align-self: center;
-            text-align: center;
-            display: flex;
-            margin: 2em;
-        }
-        li{
-            color:orange;
-        }
-        .alphabet-btn{
-            background: -webkit-linear-gradient(orange, red);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 18px;
-            border-radius: 9999px;
-            border: 2px orange dotted;
-            margin-right: 14px;
-            width: 26px;
-            height: 25px;
-            margin-top: 12px
-        }
-           
     }
 }
 // Small devices (landscape phones, 576px and up)

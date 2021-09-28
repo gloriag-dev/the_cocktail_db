@@ -1,5 +1,5 @@
 import React from "react"
-import axios from "axios"
+import axios, { AxiosInstance } from "axios"
 
 export interface ICocktail {
     dateModified: string | Date;
@@ -63,24 +63,27 @@ export interface IIngredient {
 }
 export default function useCocktailDBClient() {
 
-    const getAll = async () => {
-        const res = await axios({
-            url: "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=",
+    const getBaseClient = (): AxiosInstance => {
+        return axios.create({
+            baseURL: "https://www.thecocktaildb.com/api/json/v1/1"
+        })
+    }
+
+    const getAll = async (): Promise<ICocktail[]> => {
+        const res = await getBaseClient()({
+            url: "search.php?s=",
             method: "GET",
         });
-        console.log(res)
         return res.data.drinks as ICocktail[]
     }
-    const searchByName = async (search: string): Promise<ICocktail[]> => {
+    const getByName = async (search: string): Promise<ICocktail[]> => {
         try {
-            const res = await axios({
-                url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
-                method: "GET",
+            const res = await getBaseClient()({
+                url: "search.php",
                 params: {
                     s: search
                 }
             });
-            console.log(res.data.drinks);
             return res.data.drinks as ICocktail[]
 
         } catch (err) {
@@ -89,11 +92,10 @@ export default function useCocktailDBClient() {
         }
     }
 
-    const searchByFirstLetter = async (firstLetter: string): Promise<ICocktail[]> => {
+    const getByFirstLetter = async (firstLetter: string): Promise<ICocktail[]> => {
         try {
-            const res = await axios({
-                url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
-                method: "GET",
+            const res = await getBaseClient()({
+                url: "search.php",
                 params: {
                     f: firstLetter
                 }
@@ -108,11 +110,9 @@ export default function useCocktailDBClient() {
     }
     const getRandomCocktail = async (): Promise<ICocktail> => {
         try {
-            const res = await axios({
-                url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
-                method: "GET",
+            const res = await getBaseClient()({
+                url: "random.php",
             })
-            console.log(res, "random")
             return res.data.drinks[0] as ICocktail
         } catch (err) {
             console.error(err);
@@ -122,14 +122,12 @@ export default function useCocktailDBClient() {
 
     const getCocktailDetails = async (id: string): Promise<ICocktail | undefined> => {
         try {
-            const res = await axios({
-                url: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php",
-                method: "GET",
+            const res = await getBaseClient()({
+                url: "lookup.php",
                 params: {
                     i: id
                 }
             })
-            console.log(res, "details")
             return res.data?.drinks?.[0] as ICocktail
         } catch (err) {
             console.error(err, { id });
@@ -137,17 +135,15 @@ export default function useCocktailDBClient() {
         }
     }
 
-    const searchIngredientByName = async (name: string): Promise<IIngredient | undefined> => {
+    const getIngredientByName = async (name: string): Promise<IIngredient | undefined> => {
 
         try {
-            const res = await axios({
-                url: "https://www.thecocktaildb.com/api/json/v1/1/search.php",
-                method: "GET",
+            const res = await getBaseClient()({
+                url: "search.php",
                 params: {
                     i: name
                 }
             })
-            console.log(res.data.ingredients, "ingredient details res")
             return res.data?.ingredients?.[0] as IIngredient
 
         } catch (err) {
@@ -156,12 +152,12 @@ export default function useCocktailDBClient() {
         }
     }
     return {
-        searchCocktails: searchByName,
-        searchByFirstLetter,
+        getByName,
+        getByFirstLetter,
         getAll,
         getRandomCocktail,
         getCocktailDetails,
-        searchIngredientByName
+        getIngredientByName
     }
 
 }

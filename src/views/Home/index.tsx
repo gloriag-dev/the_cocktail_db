@@ -1,15 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from "react"
-import CocktailCard from "../../components/CocktailCard"
-import Navbar from "../../theme/Navbar"
-import axios from "axios"
-import searchCocktails, { ICocktail } from "../../client/useCocktailDBClient"
-import useCocktailDBClient from "../../client/useCocktailDBClient"
-import SearchBar from "../../components/SearchBar"
+import React, { useEffect, useState } from "react"
+import useCocktailDBClient, { ICocktail } from "../../client/useCocktailDBClient"
 import CocktailsList from "../../components/CocktailsList"
 import LetterWidget from "../../components/LetterWidget"
-import { CollectionsOutlined } from "@mui/icons-material"
-import Footer from "../../theme/Footer"
+import SearchBar from "../../components/SearchBar"
+import RandomCocktailButton from "../../components/RandomCocktailCardButton"
 
 export default function Home() {
 
@@ -44,7 +39,7 @@ export default function Home() {
 
     const fetchBySearch = async (search: string) => {
         try {
-            const data = await cocktailClient.searchCocktails(search);
+            const data = await cocktailClient.getByName(search);
             setCocktailList(data)
             //console.log(res);
         } catch (err) {
@@ -54,7 +49,7 @@ export default function Home() {
 
     const fetchByFirstLetter = async (firstLetter: string) => {
         try {
-            const res = await cocktailClient.searchByFirstLetter(firstLetter)
+            const res = await cocktailClient.getByFirstLetter(firstLetter)
             setCocktailList(res)
             console.log(res, "fetch by letter");
         } catch (e) {
@@ -63,12 +58,9 @@ export default function Home() {
     };
 
     return (<div className="home">
-        <Navbar></Navbar>
-        <CocktailCard></CocktailCard>
-        <SearchBar e={undefined} onChange={handleSearch}></SearchBar>
-        {cocktailList && <CocktailsList list={cocktailList}></CocktailsList>}
-        {!cocktailList && <h3 className="no-list-placeholder">Sorry, there are no matching cocktails, try again!</h3>}
-        <LetterWidget onChange={onChoseLetter} letter={""}></LetterWidget>
-        <Footer></Footer>
-    </div>)
+        <RandomCocktailButton></RandomCocktailButton>
+        <SearchBar onChange={handleSearch}></SearchBar>
+        {cocktailList ? <CocktailsList list={cocktailList}></CocktailsList> : <h3 className="no-list-placeholder">Sorry, there are no matching cocktails, try again!</h3>}
+        <LetterWidget onChange={onChoseLetter}></LetterWidget>
+    </div >)
 }

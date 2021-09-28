@@ -35,11 +35,14 @@
         border-radius: 9999px;
         border: 2px orange dotted;
         margin-left: 1em;
-        margin-bottom: 0.5em
+        margin-bottom: 0.5em;
+        transform: rotateY(0);
+        transition: all 500ms;
     }
     
     .alphabet-btn:hover{
         transform: rotateY(280deg);
+        transition: all 500ms;
         
     }
     

@@ -2,14 +2,12 @@ import React from "react"
 import "./style.scss"
 import { TextField } from '@material-ui/core';
 
-export interface ISearchBarPropsDTO {
-    e: any,
-    onChange: any
-
+export interface ISearchBarProps {
+    onChange: (event: any) => void
 }
 
 
-export default function SearchBar(props: ISearchBarPropsDTO) {
+export default function SearchBar(props: ISearchBarProps) {
 
     const handleChange = (event: any) => {
         event.stopPropagation()

@@ -19,7 +19,7 @@ export default function IngredientDetailPage() {
 
     const fetchIngredientDetailsByName = async (name: string) => {
         try {
-            const ingredient = await cocktailClient.searchIngredientByName(name)
+            const ingredient = await cocktailClient.getIngredientByName(name)
             console.log(ingredient, "search by nameeeeeeeeee")
             setIngredient(ingredient)
 
@@ -29,11 +29,11 @@ export default function IngredientDetailPage() {
     }
 
     return <div className="ingredient-page">
-        <Navbar></Navbar>
+
         {!ingredient && <p>Sorry, there are no details</p>}
         <div className="card">
             <h2>{ingredient?.strIngredient}</h2>
-            <h3>{ingredient?.strABV}</h3>
+            {ingredient?.strABV && <h3>ABV: {ingredient?.strABV}</h3>}
 
             <img src={"https://www.thecocktaildb.com/images/ingredients/" + params.name.replace("_", "%20") + ".png"} alt="ingredient"></img>
             {!ingredient?.strDescription && <span>Sorry, no description available for this item</span>}
