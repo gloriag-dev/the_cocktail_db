@@ -3,7 +3,10 @@
     display: flex;
     flex-direction: column;
     padding-top: 1px;
-    width:600px;
+    max-width:600px;
+    .MuiDialog-paperWidthSm{
+        overflow: hidden;
+    }
     
     h2{
         align-items:center;
